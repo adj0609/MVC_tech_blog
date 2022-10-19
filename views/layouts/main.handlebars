@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog about Tech</title>
+  <link rel="stylesheet" href="/stylesheet/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      
+      <nav>
+        <a href="/"><button class="btn-no-style">Home</button></a>
+        {{#if loggedIn}}
+        <a href="/dashboard" ><button class="btn-no-style">Dashboard</button></a>
+        <button id="logout" class="btn-no-style">Logout</button>
+        {{else}}
+        <a href="/login"><button class="btn-no-style">Login</button></a>
+        {{/if}}
+        <div>
+          <a href="/"><h1>
+        Blog about Tech
+      </h1></a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+      Please come back Soon!
+    </footer>
+  </div>
+  
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
