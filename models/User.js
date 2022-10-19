@@ -5,7 +5,7 @@ const sequelize = require('../config/connection');
 class User extends Model {
     //method to make sure duplicate passwords are not inserted
     checkPassword(loginPw) {
-        return bcrypt.compareSync(logingPw, this.password);
+        return bcrypt.compareSync(loginPw, this.password);
     }
 }
 
@@ -51,7 +51,8 @@ User.init(
     sequelize,
     timestamps: false,
     freezeTableName: true,
-    underscored: true
+    underscored: true,
+    modelName: 'User'
 }
 );
 

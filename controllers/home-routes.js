@@ -6,26 +6,26 @@ const { Post, User, Comment, Vote } = require('../models');
 router.get('/', (req, res) => {
     console.log('==================');
     Post.findAll({
-        attributes: [
-            'id',
-            'post_url',
-            'title',
-            'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote_id)'), 'vote_count']
-        ],
-        include: [
-            {
-                model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-                include: {
-                    model: User,
-                    attributes: ['username']
-                }
-            },
-            {
-                model: User,
-                attributes: ['username']
-            }
+       //attributes: [
+       //    'id',
+       //    'post_url',
+       //    'title',
+       //    'created_at'
+       //   
+       //],
+        include: [ User
+        //    {
+        //        model: Comment,
+        //        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        //        include: {
+        //            model: User,
+        //            attributes: ['username']
+        //        }
+        //    },
+        //    {
+        //        model: User,
+        //        attributes: ['username']
+        //    }
        ]
     })
     .then(dbPostData => {
@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
     })
     .catch(err => {
         console.log(err);
-        res.statuse(500).json(err);
+        res.status(500).json(err);
     });
  });
 
@@ -55,7 +55,7 @@ router.get('/', (req, res) => {
             'post_url',
             'title',
             'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+            
         ],
         include: [
             {
@@ -96,6 +96,14 @@ router.get('/', (req, res) => {
         return;
     }
     res.render('login');
+ });
+
+ router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('signup');
  });
 
  module.exports = router;

@@ -19,7 +19,7 @@ const postdata = [
       {
         title: 'Duis ac nibh.',
         post_text: 'http://theguardian.com/dui/vel/nisl/duis/ac/nibh.aspx',
-        user_id: 9
+        user_id: 2
       }
 ];
 

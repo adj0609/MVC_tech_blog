@@ -27,7 +27,7 @@ router.post('/', withAuth, (req, res) => {
 });
 
 //deleting post with authorization
-router.delete('/:id', withAut, (res, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Comment.destroy({
         where: {
             id: req.params.id
@@ -46,4 +46,4 @@ router.delete('/:id', withAut, (res, res) => {
     });
 });
 
-module.export = router;
+module.exports = router;
